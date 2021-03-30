@@ -1,0 +1,8 @@
+README.md
+price_scrapper.py
+setup.py
+price_scrapper.egg-info/PKG-INFO
+price_scrapper.egg-info/SOURCES.txt
+price_scrapper.egg-info/dependency_links.txt
+price_scrapper.egg-info/requires.txt
+price_scrapper.egg-info/top_level.txt
