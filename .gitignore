@@ -1,0 +1,6 @@
+*.lock
+*.toml
+*.replit
+price_scrapper.egg-info
+
+__*
