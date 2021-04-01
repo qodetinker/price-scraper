@@ -1,4 +1,4 @@
-# Project Name: price-scrapper
+# Project Name: price-scraper
 Scraping websites for interested items. Written in replit and uploaded to GitHub. Will need to grab the class of interested item price. Final form will be uploaded to a server to run nightly. This is mainly configured for Nike.com websites
 
 # Dependices 

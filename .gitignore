@@ -1,3 +1,5 @@
+# Files that get generated from using replit
+
 *.lock
 *.toml
 *.replit
