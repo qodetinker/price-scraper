@@ -23,9 +23,11 @@ def get_price(url_list, html_class, og_price):
 
 
 if __name__ == '__main__':
-    print(f'**** Start Time: {datetime.now().strftime("%A %B %d %I:%M %S %p %Y")}')
+    print(f'**** Start Time: {datetime.now().strftime("%A %B %d %I:%M %S %p %Y")}\n')
     
     # Nike Long Sleeves
     get_price(c.nike_long_sleeves, c.nike_price_class, 35)
+    # Nike Socks
+    get_price(c.nike_socks, c.nike_price_class, 20)
 
-    print(f'**** End Time: {datetime.now().strftime("%A %B %d %I:%M %S %p %Y")}')
+    print(f'**** End Time: {datetime.now().strftime("%A %B %d %I:%M %S %p %Y")}\n')
