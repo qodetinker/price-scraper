@@ -2,32 +2,39 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 import config as c
+import math
 
 
-def get_price(url_list, html_class, og_price):
-    ori_price = int(og_price)
-    # Pass in the URL value
+def get_price(url_list, attribute_list):
     for color, url in url_list.items():
+        og_price = float()
+        new_price = float()
+
         if requests.get(url):
+            print(f'Requesting URL for {color}')
             page = requests.get(url)
-
             soup = BeautifulSoup(page.content, 'html.parser')
-        
-            for x in html_class.values():
-                tags = soup.find_all(class_=x)
-
-                for i in tags:
-                    c_price = float(i.string[1:])
-                    if c_price < ori_price:
-                        print(f'There is a sale on {color}, the price is now {i.string}')
-
+            
+            print('Looking for attributes')
+            for target_atrribute in attribute_list:
+                tag = soup.find('div', attrs={'data-test': target_atrribute})
+                try:
+                    if target_atrribute == 'product-price':
+                        og_price = float(tag.string[1:])
+                    else:
+                        new_price = float(tag.string[1:])
+                except AttributeError as err:
+                    continue
+    
+    sale_price = og_price - new_price    
+    if sale_price > 0: 
+        price = math.floor(sale_price)
+        print(f'There is a sale of ${price} OFF!!')
 
 if __name__ == '__main__':
     print(f'**** Start Time: {datetime.now().strftime("%A %B %d %I:%M %S %p %Y")}\n')
     
-    # Nike Long Sleeves
-    get_price(c.nike_long_sleeves, c.nike_price_class, 35)
-    # Nike Socks
-    get_price(c.nike_socks, c.nike_price_class, 20)
-
+    # Nike Gear
+    get_price(c.nike_gear, c.nike_attribute)
+    
     print(f'**** End Time: {datetime.now().strftime("%A %B %d %I:%M %S %p %Y")}\n')
