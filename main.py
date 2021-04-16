@@ -16,20 +16,20 @@ def get_price(url_list, attribute_list):
             soup = BeautifulSoup(page.content, 'html.parser')
             
             print('Looking for attributes')
-            for target_atrribute in attribute_list:
+            for count, target_atrribute in enumerate(attribute_list):
                 tag = soup.find('div', attrs={'data-test': target_atrribute})
                 try:
-                    if target_atrribute == 'product-price':
+                    if count == 0:
                         og_price = float(tag.string[1:])
                     else:
                         new_price = float(tag.string[1:])
                 except AttributeError as err:
                     continue
-    
+                    
     sale_price = og_price - new_price    
     if sale_price > 0: 
         price = math.floor(sale_price)
-        print(f'There is a sale of ${price} OFF!!')
+        print(f'There is a sale of ${price} OFF!! for ${new_price}')
 
 if __name__ == '__main__':
     print(f'**** Start Time: {datetime.now().strftime("%A %B %d %I:%M %S %p %Y")}\n')
